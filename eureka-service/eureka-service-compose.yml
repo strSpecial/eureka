@@ -1,0 +1,45 @@
+# yaml 配置实例
+version: '3.8'
+services:
+  eureka-service1:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    image: eureka-service:1.0
+    environment:
+      profile: slav1
+    ports:
+      - "8761:8761"
+    container_name: eureka-service1
+    networks:
+      - test
+  eureka-service2:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    image: eureka-service:1.0
+    environment:
+      profile: slav2
+    ports:
+      - "8762:8761"
+    container_name: eureka-service2
+    networks:
+      - test
+  eureka-service3:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    image: eureka-service:1.0
+    environment:
+      profile: slav3
+    ports:
+      - "8763:8761"
+    container_name: eureka-service3
+    networks:
+      - test
+
+networks:
+  test:
+    driver: bridge
+
+

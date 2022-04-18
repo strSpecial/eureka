@@ -1,0 +1,52 @@
+spring:
+  application:
+    name: eureka-service3
+  profiles:
+    active: slav1
+server:
+  port: 8761
+
+eureka:
+  server:
+    enable-self-preservation: true
+  client:
+    healthcheck:
+      enabled: true
+    service-url:
+      defaultZone: http://eureka-service1:8761/eureka/,http://eureka-service2:8761/eureka/,http://eureka-service3:8761/eureka/
+    register-with-eureka: true
+    fetch-registry: true
+logging:
+  level:
+    com.netflix.eureka: debug
+    com.netflix.discovery: debug
+
+---
+spring:
+  config:
+    activate:
+      on-profile: slav1
+eureka:
+  instance:
+    appname: eureka-service
+    hostname: eureka-service1
+
+---
+spring:
+  config:
+    activate:
+      on-profile: slav2
+eureka:
+  instance:
+    appname: eureka-service
+    hostname: eureka-service2
+
+---
+spring:
+  config:
+    activate:
+      on-profile: slav3
+eureka:
+  instance:
+    appname: eureka-service
+    hostname: eureka-service3
