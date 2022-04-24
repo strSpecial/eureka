@@ -1,0 +1,18 @@
+# yaml 配置实例
+version: '3.8'
+services:
+  eureka-client:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    image: eureka-client:1.0
+    ports:
+      - "8080:8080"
+    container_name: eureka-client
+    networks:
+      - eureka-service_test
+networks:
+  eureka-service_test:
+    external: true
+
+
